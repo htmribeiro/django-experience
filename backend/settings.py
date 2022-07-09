@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django_seed',
     # my apps
     'backend.core',
+    'backend.todo',
 ]
 
 MIDDLEWARE = [

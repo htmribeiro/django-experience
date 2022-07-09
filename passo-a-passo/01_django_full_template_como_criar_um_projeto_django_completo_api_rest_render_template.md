@@ -121,24 +121,28 @@ touch backend/core/templates/includes/{nav,pagination}.html
 
 ### Commit aqui
 
-git commit -m"DjExp#01 Criando a app principal e app core"
+git commit -m"DjExp01 Criando a app principal e app core"
 
 ## Criando mais uma app todo
 
 ```sh
 cd backend
+```
+
+```sh
 python ../manage.py startapp todo
 cd ..
 ```
 
-> Adicione `backend.todo` em `INSTALLED_APPS`.
+* Editando `settings.py`
+  > Adicione `backend.todo` em `INSTALLED_APPS`.
 
-Edite `backend/todo/apps.py`.
+* Edite `backend/todo/apps.py`.
+  * `name = 'backend.todo'`
 
-`name = 'backend.todo'`
+## Criando os arquivos básicos da app todo
 
-
-```
+```sh
 mkdir backend/todo/api
 mkdir -p backend/todo/templates/todo
 
@@ -149,9 +153,19 @@ touch backend/todo/{forms,views,urls}.py
 touch backend/todo/templates/todo/todo_{list,detail,form,confirm_delete}.html
 ```
 
-Editar `backend/urls.py`
+---
+### limpando arquivos `*.pyc`
 
-```python
+* Exibe a lista de comandos do `manage.py`
+  * `python manage.py`
+  * **[django_extensions]<br/>&nbsp;*clean_pyc***
+    * `python manage.py clean_pyc`
+
+---
+
+* Editar `backend/urls.py`
+
+```py
 from django.contrib import admin
 from django.urls import include, path
 
@@ -160,13 +174,11 @@ urlpatterns = [
     path('', include('backend.todo.urls', namespace='todo')),
     path('admin/', admin.site.urls),
 ]
-
 ```
 
+* Editar `backend/core/urls.py`
 
-Editar `backend/core/urls.py`
-
-```python
+```py
 from django.urls import path
 
 from .views import index
@@ -176,12 +188,11 @@ app_name = 'core'
 urlpatterns = [
     path('', index, name='index'),
 ]
-
 ```
 
-Editar `backend/todo/urls.py`
+* Editar `backend/todo/urls.py`
 
-```python
+```py
 from django.urls import include, path
 from rest_framework import routers
 
@@ -206,8 +217,11 @@ urlpatterns = [
     path('todo/', include(todo_urlpatterns)),
     path('api/v1/', include(router.urls)),
 ]
-
 ```
+
+### Commit aqui
+
+git commit -m"DjExp#01 Criando a app todo"
 
 ## Editando todos os arquivos
 
