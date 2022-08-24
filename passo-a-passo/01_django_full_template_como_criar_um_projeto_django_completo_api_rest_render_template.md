@@ -222,6 +222,7 @@ urlpatterns = [
 ### Commit aqui
 
 git commit -m"DjExp#01 Criando a app todo"
+> 12:34 min
 
 ## Editando todos os arquivos
 
